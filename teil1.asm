@@ -1,39 +1,26 @@
-SECTION .data
-	; no data
+;#############################
+; if- Anweisung Code Snippet
+;###########################
 
-SECTION .text
-
-; oeffentliche Functionen deklarieren
-	global main
-
-; Funktionen implementieren
 main:
-	push ebp	; neuer Stackframe erzeugen
-	mov ebp, esp
+	mov eax, 0	;erster Operand in eax
+	mov ebx, 1 	;zweiter Operand in ebx
+	cmp eax, ebx	;Vergleich der if Abfrage
+	je wahr 	;Springe, wenn gleich
+	mov edx, 1 	;Anweisung, wenn ungleich
+	ret
 
-	; Diese Datei kann als Vorlage für die
-	; Entwicklung von Assembler-Programmen
-	; verwendet werden. Hierzu muss die nächste
-	; Zeile nur durch den gewünschten Code
-	; ersetzt werden.
+wahr:
+	mov edx, 0	; Anweisung für true
+	ret		
+
+
+;##############################
+; for-Schleife Snippet
+;##############################
+
+	mov ecx, 3 ; Anzahl der Schleifendurchläufe in Counter Register
 	
-	mov eax, 1
-	mov ebx, 0
-	cmp eax, ebx
-	jz target
-	mov edx, 1
-
-exit:
-	mov esp, ebp	; alter Stackframe restaurieren
-	pop ebp	
-
-	; Programm verlassen & signalisieren,
-	; dass bei bei der Ausführung kein Fehler
-	; aufgetreten ist.
-	mov ebx, 0
-	mov eax, 1
-	int 0x80
-
-target:
-	mov eax, 0
-	jmp exit 
+schleife:
+	; Hier können die Anweisungen rein
+	loop schleife ; wiederholung wenn ecx nach dekrementierung ungleich 0
